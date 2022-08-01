@@ -1,4 +1,4 @@
-# OryKetoClient::InlineResponse2001
+# OryKetoClient::GetVersion200Response
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryKetoClient::InlineResponse2001.new(
+instance = OryKetoClient::GetVersion200Response.new(
   version: null
 )
 ```

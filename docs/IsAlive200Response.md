@@ -1,4 +1,4 @@
-# OryKetoClient::InlineResponse200
+# OryKetoClient::IsAlive200Response
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryKetoClient::InlineResponse200.new(
+instance = OryKetoClient::IsAlive200Response.new(
   status: null
 )
 ```

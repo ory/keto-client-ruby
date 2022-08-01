@@ -1,4 +1,4 @@
-# OryKetoClient::InternalRelationTuple
+# OryKetoClient::RelationTuple
 
 ## Properties
 
@@ -7,7 +7,7 @@
 | **namespace** | **String** | Namespace of the Relation Tuple |  |
 | **object** | **String** | Object of the Relation Tuple |  |
 | **relation** | **String** | Relation of the Relation Tuple |  |
-| **subject_id** | **String** | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID are required. | [optional] |
+| **subject_id** | **String** | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided. | [optional] |
 | **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
 
 ## Example
@@ -15,7 +15,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryKetoClient::InternalRelationTuple.new(
+instance = OryKetoClient::RelationTuple.new(
   namespace: null,
   object: null,
   relation: null,

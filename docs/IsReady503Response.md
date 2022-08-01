@@ -1,4 +1,4 @@
-# OryKetoClient::InlineResponse503
+# OryKetoClient::IsReady503Response
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryKetoClient::InlineResponse503.new(
+instance = OryKetoClient::IsReady503Response.new(
   errors: null
 )
 ```
