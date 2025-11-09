@@ -14,30 +14,19 @@ require 'date'
 require 'time'
 
 module OryKetoClient
-  # Relation Query
-  class RelationQuery
-    # Namespace to query
-    attr_accessor :namespace
+  # Check Permission Result With Error
+  class CheckPermissionResultWithError
+    # whether the relation tuple is allowed
+    attr_accessor :allowed
 
-    # Object to query
-    attr_accessor :object
-
-    # Relation to query
-    attr_accessor :relation
-
-    # SubjectID to query  Either SubjectSet or SubjectID can be provided.
-    attr_accessor :subject_id
-
-    attr_accessor :subject_set
+    # any error generated while checking the relation tuple
+    attr_accessor :error
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'namespace' => :'namespace',
-        :'object' => :'object',
-        :'relation' => :'relation',
-        :'subject_id' => :'subject_id',
-        :'subject_set' => :'subject_set'
+        :'allowed' => :'allowed',
+        :'error' => :'error'
       }
     end
 
@@ -54,11 +43,8 @@ module OryKetoClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'namespace' => :'String',
-        :'object' => :'String',
-        :'relation' => :'String',
-        :'subject_id' => :'String',
-        :'subject_set' => :'SubjectSet'
+        :'allowed' => :'Boolean',
+        :'error' => :'String'
       }
     end
 
@@ -72,36 +58,26 @@ module OryKetoClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OryKetoClient::RelationQuery` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OryKetoClient::CheckPermissionResultWithError` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OryKetoClient::RelationQuery`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OryKetoClient::CheckPermissionResultWithError`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'namespace')
-        self.namespace = attributes[:'namespace']
+      if attributes.key?(:'allowed')
+        self.allowed = attributes[:'allowed']
+      else
+        self.allowed = nil
       end
 
-      if attributes.key?(:'object')
-        self.object = attributes[:'object']
-      end
-
-      if attributes.key?(:'relation')
-        self.relation = attributes[:'relation']
-      end
-
-      if attributes.key?(:'subject_id')
-        self.subject_id = attributes[:'subject_id']
-      end
-
-      if attributes.key?(:'subject_set')
-        self.subject_set = attributes[:'subject_set']
+      if attributes.key?(:'error')
+        self.error = attributes[:'error']
       end
     end
 
@@ -110,6 +86,10 @@ module OryKetoClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @allowed.nil?
+        invalid_properties.push('invalid value for "allowed", allowed cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -117,7 +97,18 @@ module OryKetoClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @allowed.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] allowed Value to be assigned
+    def allowed=(allowed)
+      if allowed.nil?
+        fail ArgumentError, 'allowed cannot be nil'
+      end
+
+      @allowed = allowed
     end
 
     # Checks equality by comparing each attribute.
@@ -125,11 +116,8 @@ module OryKetoClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          namespace == o.namespace &&
-          object == o.object &&
-          relation == o.relation &&
-          subject_id == o.subject_id &&
-          subject_set == o.subject_set
+          allowed == o.allowed &&
+          error == o.error
     end
 
     # @see the `==` method
@@ -141,7 +129,7 @@ module OryKetoClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [namespace, object, relation, subject_id, subject_set].hash
+      [allowed, error].hash
     end
 
     # Builds the object from hash
